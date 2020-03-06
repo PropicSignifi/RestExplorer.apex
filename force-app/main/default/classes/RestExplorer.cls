@@ -91,6 +91,10 @@ public class RestExplorer {
         return JSON.deserializeUntyped(getResult());
     }
 
+    public static MockResponse mock(String body) {
+        return new MockResponse(body);
+    }
+
     private String endpoint;
     private Map<String, Object> parameters = new Map<String, Object>();
     private String method = 'GET';
@@ -113,5 +117,21 @@ public class RestExplorer {
 
     private static String getSessionId() {
         return Page.SessionIdPage.getContent().toString().replace('\n', '');
+    }
+
+    public class MockResponse implements HttpCalloutMock {
+        public MockResponse(String body) {
+            this.body = body;
+        }
+
+        public HttpResponse respond(HttpRequest req) {
+            HttpResponse res = new HttpResponse();
+            res.setStatusCode(200);
+            res.setBody(body);
+
+            return res;
+        }
+
+        private String body;
     }
 }
