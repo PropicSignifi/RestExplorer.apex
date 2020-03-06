@@ -13,13 +13,13 @@ An APEX implementation of the REST Explorer
 Get a description of all available objects in Tooling API:
 
 ```javascript
-String result = new RestExplorer('tooling/sobjects').getResult();
+String result = new RestExplorer('/tooling/sobjects').getResult();
 ```
 
 Create a new Tooling API object:
 
 ```javascript
-String result = new RestExplorer('tooling/sobjects/MetadataContainer/')
+String result = new RestExplorer('/tooling/sobjects/MetadataContainer/')
     .doPost()
     .setBody(new Map<String, Object>{'Name' => 'TestContainer'})
     .getResult();
