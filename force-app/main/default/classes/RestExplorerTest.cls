@@ -2,8 +2,8 @@
 public class RestExplorerTest {
     @isTest
     static void testPostRequest() {
+        RestExplorer.setSessionId(UserInfo.getSessionId());
         HttpRequest req = new RestExplorer('/tooling/sobjects/MetadataContainer')
-            .setSessionId(UserInfo.getSessionId())
             .doPost()
             .setBody(new Map<String, Object>{'Name' => 'TestContainer'})
             .getRequest();
@@ -19,9 +19,9 @@ public class RestExplorerTest {
 
     @isTest
     static void testGetRequest() {
+        RestExplorer.setSessionId(UserInfo.getSessionId());
         String query = 'SELECT Id,Name From MetadataContainer WHERE Name = \'MyMeta\'';
         HttpRequest req = new RestExplorer('/tooling/query')
-            .setSessionId(UserInfo.getSessionId())
             .doGet()
             .addParameter('q', query)
             .getRequest();

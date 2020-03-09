@@ -41,9 +41,8 @@ public class RestExplorer {
         return this;
     }
 
-    public RestExplorer setSessionId(String sessionId) {
-        this.sessionId = sessionId;
-        return this;
+    public static void setSessionId(String id) {
+        sessionId = id;
     }
 
     public RestExplorer addParameter(String key, Object value) {
@@ -98,8 +97,9 @@ public class RestExplorer {
     private String endpoint;
     private Map<String, Object> parameters = new Map<String, Object>();
     private String method = 'GET';
-    private String sessionId;
     private String body;
+
+    private static String sessionId;
 
     private String encodeParameters() {
         if (this.parameters.isEmpty())
