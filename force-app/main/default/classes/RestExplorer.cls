@@ -32,7 +32,9 @@ public class RestExplorer {
     }
 
     public RestExplorer doPatch() {
-        this.method = 'PATCH';
+        // https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_update_fields.htm
+        this.method = 'POST';
+        addParameter('_HttpMethod', 'PATCH');
         return this;
     }
 
@@ -105,7 +107,7 @@ public class RestExplorer {
         if (this.parameters.isEmpty())
             return '';
 
-        String result = '/?';
+        String result = '?';
 
         for (String key : this.parameters.keySet()) {
             result += EncodingUtil.urlEncode(key, 'UTF-8') + '=' +
