@@ -2,8 +2,8 @@ public class RestExplorer {
 
     public RestExplorer() {}
 
-    public RestExplorer(String endpoint) {
-        setService(endpoint);
+    public RestExplorer(String service) {
+        setService(service);
     }
 
     public RestExplorer setEndpoint(String endpoint) {
