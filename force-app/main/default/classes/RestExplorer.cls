@@ -86,11 +86,14 @@ public class RestExplorer {
 
     public String getResult() {
         HttpResponse res = getResponse();
+        Integer statusCode = res.getStatusCode();
+        String result = res.getBody();
 
-        if (res.getStatusCode() != 200) {
-            throw new ErrorResponseException('' + res.getStatusCode() + ': ' +  res.getStatus());
+        if (statusCode >= 200 && statusCode < 300) {
+            return result;
+        } else {
+            throw new ErrorResponseException('' + statusCode + ': ' +  result);
         }
-        return res.getBody();
     }
 
     public Object getJsonResult() {
