@@ -31,7 +31,7 @@ public class RestExplorerTest {
         System.assertEquals(req.getMethod(), 'GET');
         System.assertEquals(req.getEndpoint(),
             URL.getSalesforceBaseUrl().toExternalForm() +
-            '/services/data/v48.0/tooling/query/?' +
+            '/services/data/v48.0/tooling/query?' +
             'q=SELECT+Id%2CName+From+MetadataContainer+WHERE+Name+%3D+%27MyMeta%27');
     }
 }
