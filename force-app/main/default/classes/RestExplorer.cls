@@ -85,7 +85,12 @@ public class RestExplorer {
     }
 
     public String getResult() {
-        return getResponse().getBody();
+        HttpResponse res = getResponse();
+
+        if (res.getStatusCode() != 200) {
+            throw new ErrorResponseException('' + res.getStatusCode() + ': ' +  res.getStatus());
+        }
+        return res.getBody();
     }
 
     public Object getJsonResult() {
@@ -136,4 +141,6 @@ public class RestExplorer {
 
         private String body;
     }
+
+    private class ErrorResponseException extends Exception {}
 }
