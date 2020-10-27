@@ -34,3 +34,9 @@ String reusult = new RestExplorer('/tooling/query')
     .getResult();
 ```
 
+Query all datasets in Wave API and convert the JSON result to a map:
+
+```javascript
+Map<String, Object> result =
+    (Map<String, Object>)new RestExplorer('/wave/datasets/').getJsonResult();
+```
