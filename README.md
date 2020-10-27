@@ -1,6 +1,6 @@
 # RestExplorer
 
-An APEX implementation of the REST Explorer
+An APEX implementation of the REST Explorer in the Salesforce Workbench
 
 ## Features
 
@@ -40,3 +40,27 @@ Query all datasets in Wave API and convert the JSON result to a map:
 Map<String, Object> result =
     (Map<String, Object>)new RestExplorer('/wave/datasets/').getJsonResult();
 ```
+
+Query an Account by its Id:
+
+```javascript
+new RestExplorer('/sobjects/Account/001O000001HbzFwIAJ').getResult();
+```
+
+Update a field in an Account record:
+
+```javascript
+new RestExplorer('/sobjects/Account/001O000001HbzFwIAJ')
+    .setBody(new Map<String, Object>{'Website' => 'https://example.com'})
+    .doPatch()
+    .getResult();
+```
+
+## FAQ
+
+What is the SessionIdPage?
+
+The session Id from `UserInfo.getSessionId()` cannot be used in a lightning
+context, therefore we have to create a Visualforce Page and get the session
+Id from there. Reference:
+https://techevangel.com/2019/06/17/how-to-get-session-id-of-current-user-in-lightning-context/
